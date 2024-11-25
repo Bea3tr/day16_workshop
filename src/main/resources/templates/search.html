@@ -8,13 +8,20 @@
 </head>
 <body>
 
-    <h3>Here are your list of images</h3>
-    <div data-th-each="img: ${imgList}">
-        <img data-th-src="${img}">
+    <h3>Search term: <span data-th-text="${query}"></span></h3>
+    <div data-th-if="${#lists.isEmpty(imgList)}">
+        <h3>Your search produces no result</h3>
+    </div>
+
+    <div data-th-unless="${#lists.isEmpty(imgList)}">
+        <h3>Here are your list of images</h3>
+        <div data-th-each="img: ${imgList}">
+            <img data-th-src="${img}">
+        </div>
     </div>
     
     <br>
-    
+
     <a href="/">Back</a>
 </body>
 </html>

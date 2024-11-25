@@ -26,6 +26,7 @@ public class APIController {
 
         List<String> imgList = apiSvc.getFixedImgs(form);
         model.addAttribute("imgList", imgList);
+        model.addAttribute("query", form.getFirst("query"));
 
         return "search";
     }
