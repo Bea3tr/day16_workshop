@@ -1,0 +1,23 @@
+img {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+body {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: center;
+}
+
+table {
+    margin: auto;
+    font-size: 18px;
+}
+
+input, select {
+    width: 100px;
+    height: 17px;
+}
+
+td {
+    text-align: left;
+}
