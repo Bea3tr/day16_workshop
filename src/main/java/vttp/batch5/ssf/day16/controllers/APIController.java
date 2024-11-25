@@ -33,10 +33,7 @@ public class APIController {
                                         .queryParam("api_key", API_KEY)
                                         .queryParam("q", form.getFirst("query"))
                                         .queryParam("limit", form.getFirst("limit"))
-                                        .queryParam("offset", 0)
                                         .queryParam("rating", form.getFirst("rating"))
-                                        .queryParam("lang", "en")
-                                        .queryParam("bundle", "messaging_non_clips")
                                         .toUriString();
 
         List<String> imgList = apiSvc.getFixedImgs(url);
