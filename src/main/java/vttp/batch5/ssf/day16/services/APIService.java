@@ -4,11 +4,14 @@ import java.io.StringReader;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import jakarta.json.Json;
 import jakarta.json.JsonArray;
@@ -18,10 +21,23 @@ import jakarta.json.JsonReader;
 @Service
 public class APIService {
 
+    @Value("${api.key}")
+    private String API_KEY;
+
+    public static final String URL = "https://api.giphy.com/v1/gifs/search";
+
     // Data structure
     // object -> array of objects -> "images" (object) -> "fixed-height" (object) -> url (string)
     
-    public List<String> getFixedImgs(String url) {
+    public List<String> getFixedImgs(MultiValueMap<String, String> form) {
+
+        String url = UriComponentsBuilder.fromUriString(URL)
+                                        .queryParam("api_key", API_KEY)
+                                        .queryParam("q", form.getFirst("query"))
+                                        .queryParam("limit", form.getFirst("limit"))
+                                        .queryParam("rating", form.getFirst("rating"))
+                                        .toUriString();
+
         List<String> fixed = new LinkedList<>();
 
         RequestEntity<Void> req = RequestEntity.get(url)
